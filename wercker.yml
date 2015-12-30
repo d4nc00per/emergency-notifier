@@ -1,4 +1,4 @@
-box: wercker/android
+box: tomorrowkey/android@2.2.0
 # Build definition
 build:
   # The steps that will be executed on build
