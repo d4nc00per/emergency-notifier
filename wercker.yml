@@ -1,4 +1,4 @@
-box: wasabeef/android
+box: d4nc00per/wercker-android
 # Build definition
 build:
   # The steps that will be executed on build
@@ -14,4 +14,4 @@ build:
     - script:
         name: run gradle
         code: |
-          gradle --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR buildw
+          gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR build
