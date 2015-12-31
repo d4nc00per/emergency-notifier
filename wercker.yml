@@ -1,4 +1,4 @@
-box: takke/android-wercker
+box: wasabeef/android
 # Build definition
 build:
   # The steps that will be executed on build
