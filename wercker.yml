@@ -1,4 +1,4 @@
-box: d4nc00per/wercker-android
+box: d4nc00per/wercker-android-23
 # Build definition
 build:
   # The steps that will be executed on build
