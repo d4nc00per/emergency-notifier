@@ -1,5 +1,8 @@
 # Emergency Notifier
 
+## Build
+Run `gradlew clean build` from the command line.
+
 ## To Do
 * Android settings
 * Contact
