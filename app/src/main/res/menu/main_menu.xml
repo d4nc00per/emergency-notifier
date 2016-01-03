@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="messageMenuAction"
+    <item android:id="@+id/messageMenuAction"
         app:showAsAction="never"
         android:title="Set Message">
     </item>
-    <item android:id="contactMenuAction"
+    <item android:id="@+id/contactMenuAction"
         app:showAsAction="never"
         android:title="Set Recipients">
     </item>
