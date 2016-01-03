@@ -20,5 +20,7 @@
         android:textColor="@android:color/white"
 
         android:text="SEND!"
-        android:textSize="50dp"/>
+        android:textSize="50dp"
+
+        android:onClick="sendButtonClicked"/>
 </RelativeLayout>
