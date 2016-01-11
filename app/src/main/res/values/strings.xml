@@ -3,4 +3,5 @@
     <string name="contact_name">John Smith</string>
     <string name="contact_number">07987 654321</string>
     <string name="search_title">Search Contacts</string>
+    <string name="search_contacts_message">Search for contacts using the search bar above.</string>
 </resources>
