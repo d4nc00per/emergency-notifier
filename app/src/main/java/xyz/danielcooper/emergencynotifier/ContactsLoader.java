@@ -10,6 +10,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 
+import java.util.ArrayList;
+
 /**
  * Created by Dan on 11/01/2016.
  */
@@ -17,6 +19,7 @@ public class ContactsLoader implements LoaderManager.LoaderCallbacks<Cursor> {
 
     Context context;
 
+    public static final String TAG = "ContactsLoader";
     public static final String QUERY_KEY = "QueryKey";
 
     public ContactsLoader(Context context) { context = context; }
@@ -45,6 +48,49 @@ public class ContactsLoader implements LoaderManager.LoaderCallbacks<Cursor> {
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 
+        if (context == null) {
+            throw new IllegalArgumentException("context");
+        }
+
+        ArrayList<Person> contacts = ((SelectContactsActivity)context).Contacts;
+
+        if(contacts == null) {
+            throw new IllegalArgumentException("contacts");
+        }
+
+        if (data.getCount() == 0) {
+            return;
+        }
+
+        int nameColumnIndex = data.getColumnIndex(ContactsContract.CommonDataKinds.Contactables.DISPLAY_NAME);
+        int phoneColumnIndex = data.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+        int typeColumnIndex = data.getColumnIndex(ContactsContract.CommonDataKinds.Contactables.MIMETYPE);
+        int lookupColumnIndex = data.getColumnIndex(ContactsContract.CommonDataKinds.Contactables.LOOKUP_KEY);
+
+        data.moveToFirst();
+
+        String lookupKey = "";
+        String displayName = "";
+
+        do {
+            Person contact = new Person();
+
+            String currentLookupKey = data.getString(lookupColumnIndex);
+            if (!lookupKey.equals(currentLookupKey)) {
+                displayName = data.getString(nameColumnIndex);
+                lookupKey = currentLookupKey;
+            }
+
+            contact.setName(displayName);
+
+            String mimeType = data.getString(typeColumnIndex);
+
+            if (mimeType.equals(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)) {
+               contact.setNumber(data.getString(phoneColumnIndex));
+
+                contacts.add(contact);
+            }
+        } while (data.moveToNext());
     }
 
     @Override
